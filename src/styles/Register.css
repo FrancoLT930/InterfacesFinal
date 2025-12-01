@@ -1,0 +1,49 @@
+body{
+    background-color: #9CB9B3;
+    margin: 0px;
+    text-align: center;
+}
+
+.title-h1{
+    color: #FFD27D;
+    font-family: "Sigmar";
+    font-size: 75px;
+    margin: 0px;
+}
+
+.subtitle {
+    font-size: 20px;
+    font-family: "Inter", cursive;
+    color: #000000;
+}
+
+.btn-continue-register {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #4C8479;
+    color: #FFFFFF;
+}
+
+.form-body {
+    display: grid;
+    align-items: center;
+    gap: 14px;
+    margin: 23px 40px 40px 40px;
+}
+
+.accion-register{
+    background-color: #FFFFFF;
+    height: 150px;
+    border-radius: 60px 60px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.accion-register a {
+    margin-top: 10px;
+    font-family: "Inter", cursive;
+    font-size: 16px;
+    margin-bottom: 10px;
+}

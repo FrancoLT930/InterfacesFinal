@@ -1,0 +1,24 @@
+.header-profile {
+  font-family: "Itim", cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-profile-name {
+  font-size: 48px;
+}
+
+.header-profile-subname {
+  color: #fff;
+  font-size: 24px;
+}
+
+.profile-catergory {
+  display: flex;
+  justify-content: center;
+  color: #FFD27D;
+  font-family: "Itim", cursive;
+  font-size: 24px;
+  margin-top: 22px;
+}

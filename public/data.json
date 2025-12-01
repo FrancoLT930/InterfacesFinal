@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 12345678,
+      "origin": [-77.030867, -12.054139],
+      "destination": [-77.036712, -12.042828],
+      "client": "Mario Rivera",
+      "amount": "29.90",
+      "km": 5.2,
+      "address": {
+        "origin": "Av. Arequipa 1234, Miraflores",
+        "destination": "Calle Los Pinos 567, Surco"
+      },
+      "orderDetails": {
+        "items": [
+          { "name": "Hamburguesa Doble", "quantity": 2, "notes": "Sin tomate" },
+          { "name": "Coca Cola 500ml", "quantity": 2 },
+          { "name": "Papas Supreme", "quantity": 1 }
+        ]
+      }
+    }
+  ]
+}

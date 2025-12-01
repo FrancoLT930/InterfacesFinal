@@ -1,0 +1,95 @@
+body {
+    background-color: #4C8479;
+    margin: 0px;
+    text-align: center;
+}
+
+
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+}
+
+.title-h1{
+    color: #C8A758;
+    font-family: "Sigmar";
+    font-size: 75px;
+    margin: 0px;
+}
+
+.subtitle {
+    font-size: 20px;
+    font-family: "Sigmar";
+    color: #FFFFFF;
+}
+
+.inputs-form {
+    display: grid;
+    align-items: center;
+    gap: 14px;
+    margin: 20px 40px 0px 40px;
+}
+
+input{
+    height: 55px;
+    border-radius: 16px;
+    padding-left: 15px;
+    font-family: "Inter", cursive;
+    font-size: 24px;
+}
+
+.accion-login{
+    background-color: #FFFFFF;
+    height: 200px;
+    border-radius: 60px 60px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+
+/*Estilo para Olvidaste tu contraseña xd*/
+.OlvidoContra {
+    font-family: "Inter", cursive;
+    color:#000000;
+    font-size: 20px;
+    margin: 10px 40px 85px 40px;
+    text-align: center;
+
+
+}
+
+.btn {
+    font-family: "Itim", cursive;
+    font-size: 24px;
+    border-radius: 16px;
+    width: 80vw; 
+    height: 55px;
+    border: none;
+}
+
+.btn-login {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #4C8479;
+    color: #FFFFFF;
+}
+
+.btn-create-account {
+    display: flex;
+    align-items: center;
+    background-color: #9CB9B3;
+    color: #000;
+    text-decoration: none;
+    justify-content: center;
+}
