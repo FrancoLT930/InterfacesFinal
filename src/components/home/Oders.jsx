@@ -8,9 +8,7 @@ export const OdersHome = () => {
     const fetchData = async () => {
       try {
         const response = await fetch("/data.json");
-        if (!response.ok) {
-          alert("no se encontr el archivo");
-        }
+        if (!response.ok) throw new Error("No encontrado");
         const { data } = await response.json();
         setOrders(data);
       } catch (error) {
@@ -25,14 +23,15 @@ export const OdersHome = () => {
       <div className="order-home-title">
         <span>PEDIDOS DISPONIBLES</span>
       </div>
-      {orders.map(({ id, client, amount, address, km }) => (
+      {orders.map((order) => (
         <Order
-          key={id}
-          id={id}
-          client={client}
-          amount={amount}
-          address={address}
-          km={km}
+          key={order.id}
+          id={order.id}
+          client={order.client}
+          amount={order.amount}
+          address={order.address}
+          km={order.km}
+          paymentMethod={order.paymentMethod}
         />
       ))}
     </section>

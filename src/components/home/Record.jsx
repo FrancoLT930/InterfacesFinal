@@ -1,18 +1,12 @@
-export const RecordHome = ({record, total, onViewHistorial}) => {
+export const RecordHome = ({ record = 0, total = 0, onViewHistorial }) => {
   return (
     <section className="card record-home">
       <div className="record-summary">
-        <div>
-          <span>Record: </span>
-          <span>{record}</span>
-        </div>
-        <div>
-          <span>Total: </span>
-          <span>{total}</span>
-        </div>
+        <span>Record: {record}</span>
+        <span>Total: {total}</span>
       </div>
-      <div className="record-view-history" onClick={onViewHistorial}>
-        <span>Ver Historial</span>
+      <div className="record-view-history">
+        <button onClick={onViewHistorial}>Ver Historial</button>
       </div>
     </section>
   );

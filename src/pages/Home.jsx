@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { HeaderHome } from "../components/home/Header";
@@ -8,40 +9,48 @@ import { HistorialHome } from "../components/home/Historial";
 import { OrdersAvailableHome } from "../components/home/OrdersAvailable";
 
 import "../styles/Home.css";
-import { useState } from "react";
 
 export const Home = () => {
-  const [totalRecords, setTotalRecords] = useState(253);
-  const [totalRecordsToday, setTotalRecordsToday] = useState(32);
-  const [totalOderAvailable, setTotalOderAvailable] = useState(5);
+  const navigate = useNavigate();
+
   const [isVisibleHistorial, setIsVisibleHistorial] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
+  useEffect(() => {
+    const savedUser = localStorage.getItem("chaskysUser");
+    if (savedUser) {
+      const parsed = JSON.parse(savedUser);
+      setUserData(parsed);
+      if (parsed.username === "admin" || !parsed.name) {
+        setIsAdmin(true);
+      }
+    } else {
+      setUserData({ name: "Juan" });
+      setIsAdmin(true);
+    }
+  }, []);
 
-   const navigate = useNavigate();
+  const handlerViewHistorial = () => setIsVisibleHistorial(true);
+  const handlerViewOrdersAvailable = () => setIsVisibleHistorial(false);
 
-  const handlerViewHistorial = () => {
-    setIsVisibleHistorial(true);
-  };
-
-  const handlerViewOrdersAvailable = () => {
-    setIsVisibleHistorial(false);
-  };
-
+  const displayName = userData?.name || "Chasky";
+  const displayType = isAdmin ? "Chasky Premium" : "Chasky Básico";
+  const displayProfit = isAdmin ? "152.20" : "0.00";
+  const displayRecord = isAdmin ? 253 : 0;
+  const displayTotalToday = isAdmin ? 32 : 0;
 
   return (
     <div>
-      <HeaderHome/>
-      <ProfitHome />
+      <HeaderHome name={displayName} type={displayType} />
+      <ProfitHome profit={displayProfit} />
 
       {isVisibleHistorial ? (
-        <OrdersAvailableHome
-          total={totalOderAvailable}
-          onViewOrdersAvailable={handlerViewOrdersAvailable}
-        />
+        <OrdersAvailableHome onViewOrdersAvailable={handlerViewOrdersAvailable} />
       ) : (
         <RecordHome
-          record={totalRecords}
-          total={totalRecordsToday}
+          record={displayRecord}
+          total={displayTotalToday}
           onViewHistorial={handlerViewHistorial}
         />
       )}

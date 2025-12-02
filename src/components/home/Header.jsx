@@ -1,20 +1,19 @@
 import { useNavigate } from "react-router-dom";
 
-export const HeaderHome = () => {
-
+export const HeaderHome = ({ name = "Chasky", type = "Chasky Básico" }) => {
   const navigate = useNavigate();
 
-    const handlerRedictProfile = () =>{
-    navigate("/profile")
-  }
+  const handlerRedictProfile = () => {
+    navigate("/profile");
+  };
 
   return (
     <section className="header-home">
       <div className="hader-user">
         <span className="header-user-name" onClick={handlerRedictProfile}>
-          Jhefferson
+          Hola, {name}
         </span>
-        <span className="header-user-category color-orange">Chasky Rider</span>
+        <span className="header-user-category color-orange">{type}</span>
       </div>
 
       <div className="header-logo">

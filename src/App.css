@@ -26,11 +26,13 @@ body {
     margin: 0px;
 }
 
-.subtitle {
+.subtitulo {
     font-size: 20px;
     font-family: "Sigmar";
     color: #FFFFFF;
 }
+
+
 
 .inputs-form {
     display: grid;
@@ -56,6 +58,17 @@ input{
     justify-content: start;
     align-items: center;
 }
+
+    .input-wrapper .icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 26px;
+    color: #4C8479;
+    pointer-events: none;
+    z-index: 2;
+    }
 
 
 /*Estilo para Olvidaste tu contraseña xd*/

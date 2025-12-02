@@ -1,26 +1,28 @@
 import { useNavigate } from "react-router-dom";
 
-export const Order = ({ id, client, amount, address, km }) => {
+export const Order = ({ id, client, amount, address, km, paymentMethod }) => {
   const navigate = useNavigate();
 
-  const handlerRedictMonitoring = () => {
-    navigate("/monitoring-order/" + id);
+  const handleClick = () => {
+    navigate(`/monitoring-order/${id}`);
   };
 
   return (
-    <div className="card-order" onClick={handlerRedictMonitoring}>
+    <div className="card-order" onClick={handleClick}>
       <div className="card-order-name-summary">
-        <span>{client}</span>
-        <span>S/ {amount}</span>
+        <span className="client-name">{client}</span>
+        <span className="order-amount">S/ {amount}</span>
       </div>
+
       <div className="card-order-details">
-        <span>{address.origin}</span>
-        <div>
-          <span>Distancia: </span>
-          <span>{km}km</span>
+        <div className="address-info">
+          <span><b>Origen:</b>{address.origin}</span>
+          <span><b>Destino:</b>{address.destination}</span>
         </div>
-        <span>{address.destination}</span>
-        <span></span>
+        <div className="distance-info">
+          <span>Distancia: {km}km</span>
+          {paymentMethod && <span className="payment-method">{paymentMethod}</span>}
+        </div>
       </div>
     </div>
   );

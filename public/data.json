@@ -8,6 +8,7 @@
       "client": "Mario Rivera",
       "amount": "29.90",
       "km": 5.2,
+      "paymentMethod": "Efectivo",
       "address": {
         "origin": "Av. Arequipa 1234, Miraflores",
         "destination": "Calle Los Pinos 567, Surco"
@@ -17,6 +18,68 @@
           { "name": "Hamburguesa Doble", "quantity": 2, "notes": "Sin tomate" },
           { "name": "Coca Cola 500ml", "quantity": 2 },
           { "name": "Papas Supreme", "quantity": 1 }
+        ]
+      }
+    },
+    {
+      "id": 87654321,
+      "origin": [-77.049512, -12.089876],
+      "destination": [-77.028945, -12.065433],
+      "client": "Sofía Mendoza",
+      "amount": "45.50",
+      "km": 8.7,
+      "paymentMethod": "Yape",
+      "address": {
+        "origin": "Jr. de la Unión 567, Cercado de Lima",
+        "destination": "Av. La Marina 890, San Miguel"
+      },
+      "orderDetails": {
+        "items": [
+          { "name": "Ceviche Mixto", "quantity": 1 },
+          { "name": "Arroz con Mariscos", "quantity": 1 },
+          { "name": "Inka Cola 1.5L", "quantity": 1 },
+          { "name": "Chicha Morada", "quantity": 1 }
+        ]
+      }
+    },
+    {
+      "id": 11223344,
+      "origin": [-77.085432, -12.045678],
+      "destination": [-77.095123, -12.056789],
+      "client": "Carlos Vargas",
+      "amount": "18.00",
+      "km": 3.1,
+      "paymentMethod": "Plin",
+      "address": {
+        "origin": "Av. Brasil 2345, Magdalena",
+        "destination": "Calle Schell 456, Miraflores"
+      },
+      "orderDetails": {
+        "items": [
+          { "name": "Pollo a la Brasa", "quantity": 1, "notes": "Con extra papas" },
+          { "name": "Inka Cola 500ml", "quantity": 2 },
+          { "name": "Ensalada", "quantity": 1 }
+        ]
+      }
+    },
+    {
+      "id": 55667788,
+      "origin": [-77.012345, -12.078901],
+      "destination": [-77.034567, -12.098765],
+      "client": "Ana Torres",
+      "amount": "72.30",
+      "km": 12.4,
+      "paymentMethod": "Tarjeta",
+      "address": {
+        "origin": "Av. Javier Prado Este 4567, La Molina",
+        "destination": "Av. Primavera 890, Chacarilla"
+      },
+      "orderDetails": {
+        "items": [
+          { "name": "Pizza Familiar Pepperoni", "quantity": 2 },
+          { "name": "Alitas BBQ", "quantity": 12 },
+          { "name": "Gaseosa 3L", "quantity": 1 },
+          { "name": "Helado de Lucuma", "quantity": 1 }
         ]
       }
     }

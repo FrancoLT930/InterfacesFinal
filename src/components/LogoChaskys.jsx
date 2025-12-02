@@ -6,7 +6,7 @@ export const LogoChaskys = ({ descripcion }) => {
       </div>
       <section className="title">
         <h1 className="title-h1">Chaskys</h1>
-        <span className="subtitle">{descripcion}</span>
+        <span className="subtitulo">{descripcion}</span>
       </section>
     </>
   );

@@ -3,6 +3,7 @@ import { HeaderHome } from "../components/home/Header";
 import { MapMonitoring } from "../components/monitoring/MapPreview";
 
 import "../styles/MonitoringOrder.css";
+import { DetallePedido } from "../components/monitoring/DetallePedido";
 
 export const MonitoringOrder = () => {
   const { id } = useParams();
