@@ -1,40 +1,21 @@
 import { useNavigate } from "react-router-dom";
-import { useRef, useEffect, useState } from "react";
-import mapboxgl from "mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
-import { Order } from "../home/oders/Order";
+import { useEffect, useState } from "react";
 import { Map } from "../shared/Map";
-
-
-mapboxgl.accessToken = "pk.eyJ1IjoiZGFya2xvcmQ5MzAiLCJhIjoiY21pbmxoM3poMmZrOTNlb3Mxb2cxeDdycSJ9.4sc4kUYnwRIBJoyYmNCBPw";
 
 export const MapMonitoring = ({ id }) => {
   const [isLoagin, setIsLoagin] = useState(false);
   const [count, setCount] = useState(5);
+  const [order, setOrder] = useState(null);
 
-  const [order, setOrder] = useState({
-    id: 0,
-    client: "",
-    amount: "",
-    address: {
-      origin: "",
-      destination: "",
-    },
-    origin: [-77.029842, -12.04574],
-    destination: [-77.029842, -12.04574],
-    km: "",
-  });
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch("/data.json");
-        if (!response.ok) {
-          alert("no se encontr el archivo");
-        }
         const { data } = await response.json();
-        const findOrder = data.find((e) => e.id == id);
-        setOrder(findOrder);
+        const found = data.find((o) => o.id == id);
+        setOrder(found || null);
       } catch (error) {
         console.error(error);
       }
@@ -42,79 +23,87 @@ export const MapMonitoring = ({ id }) => {
     fetchData();
   }, [id]);
 
-  const navigate = useNavigate();
-
-  const handlerCancel = () => {
-    navigate("/home");
-  };
+  const handlerCancel = () => navigate("/home");
 
   const handlerAccept = () => {
     setIsLoagin(true);
     setCount(5);
-    const countInterval = setInterval(() => {
-      setCount((prevCount) => {
-        if (prevCount <= 1) {
-          clearInterval(countInterval);
+    const interval = setInterval(() => {
+      setCount((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
           setIsLoagin(false);
-          navigate("/confirm-order");
+          navigate("/confirm-order", { state: { order } });
           return 0;
         }
-        return prevCount - 1;
+        return prev - 1;
       });
     }, 1000);
-
-    return () => {
-      setCount(5);
-      setIsLoagin(false);
-      clearInterval(countInterval);
-    };
   };
-  return (
-    <section className="card monitoring">
-      <Order
-        id={order.id}
-        address={order.address}
-        amount={order.amount}
-        client={order.client}
-        km={order.km}
-      />
 
-      <div
-        className="loagin-accept"
-        style={{ display: isLoagin ? "flex" : "none" }}
-      >
-        <img src="/cargando.svg" alt="" />
-        <span>Aceptando carrera...!</span>
-        <span>{count}s</span>
+  if (!order) {
+    return (
+      <div className="loagin-accept">
+        <span>Cargando pedido...</span>
+      </div>
+    );
+  }
+
+  const totalItems = order.orderDetails.items.reduce((sum, item) => sum + item.quantity, 0);
+
+  return (
+    <section className="card monitoring" style={{ position: "relative" }}>
+      {/* DETALLE DEL PEDIDO */}
+      <div className="detalle-pedido">
+        <div className="detalle-header">
+          <h2>{order.client}</h2>
+          <p className="detalle-amount">S/ {order.amount}</p>
+        </div>
+
+        <div className="detalle-body">
+          <p><strong>Origen:</strong> {order.address.origin}</p>
+          <p><strong>Destino:</strong> {order.address.destination}</p>
+          <p><strong>Distancia:</strong> {order.km} km</p>
+          {order.paymentMethod && <p><strong>Pago:</strong> {order.paymentMethod}</p>}
+        </div>
       </div>
 
-      {order.id ? (
-        <div className="map" style={{ display: isLoagin ? "none" : "block" }}>
-          <Map mOrigin={order.origin} mDestination={order.destination} />
-        </div>
-      ) : (
-        <div></div>
-      )}
+      <div className="detalle-detalle">
+        <h3><strong>Detalle de Pedido</strong></h3>
+        <p><strong>Id Pedido:</strong> {order.id}</p>
+        <p><strong>{totalItems} productos:</strong></p>
+        <ul className="items-list">
+          {order.orderDetails.items.map((item, i) => (
+            <li key={i}>
+              {item.quantity}x {item.name} {item.notes ? `(${item.notes})` : ""}
+            </li>
+          ))}
+        </ul>
+      </div>
 
+      {/* MAPA */}
+      <div className="map">
+        <Map mOrigin={order.origin} mDestination={order.destination} />
+      </div>
 
-
-
+      {/* BOTONES */}
       <div className="btns-monitoring">
-        <button
-          className="btn-cancel"
-          style={isLoagin ? { width: "100%" } : {}}
-          onClick={handlerCancel}
-        >
+        <button className="btn-cancel" onClick={handlerCancel}>
           Cancelar
         </button>
-        <button
-          className="btn-accept"
-          style={isLoagin ? { display: "none" } : {}}
-          onClick={handlerAccept}
-        >
+        <button className="btn-accept" onClick={handlerAccept} disabled={isLoagin}>
           Aceptar
         </button>
       </div>
+
+      {/* LOADING SOBRE TODO (overlay) */}
+      {isLoagin && (
+        <div className="loagin-accept">
+          <img src="/cargando.svg" alt="Cargando" />
+          <span>Aceptando carrera...!</span>
+          <span>{count}s</span>
+        </div>
+      )}
     </section>
   );
 };

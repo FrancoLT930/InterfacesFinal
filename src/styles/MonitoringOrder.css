@@ -1,7 +1,8 @@
 
 .mapboxgl-map{
     display: flex;
-    margin-bottom: 27px;
+    margin-bottom: 16px;
+    border-radius: 16px;
     
 }
 .mapboxgl-control-container{
@@ -21,7 +22,7 @@
     border-radius: 8px;
     font-size: 20px;
     min-width: 120px;
-    font-family: "Itim", cursive;
+    font-family: "Nunito", cursive;
 }
 
 .btn-accept{
@@ -32,15 +33,85 @@
     border-radius: 8px;
     font-size: 20px;
     min-width: 120px;
-    font-family: "Itim", cursive;
+    font-family: "Nunito", cursive;
 }
 
 .loagin-accept{
-    min-height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: "Itim", cursive;
-    font-size: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+  font-size: 24px;
+  z-index: 100;
+  border-radius: 30px;
 }
+
+.loagin-accept img {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.detalle-pedido {
+  background: #9DDFD2;
+  border-radius: 30px 30px 30px 30px;
+  border: #000000 2px solid;
+  padding: 15px 10px;
+  margin-bottom: 16px;
+  font-family: "Nunito", sans-serif;
+}
+
+.detalle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.detalle-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  color: #333;
+}
+
+.detalle-amount {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+  margin: 0;
+}
+
+.detalle-body p,
+.detalle-items p {
+  display: flex;
+  flex-direction: row;
+  margin: 12px 0;
+  font-size: 14px;
+  color: #444;
+}
+
+.detalle-detalle {
+  background: #D2D2D2;
+  text-align: left;
+  border-radius: 30px 30px 30px 30px;
+  border: #000000 2px solid;
+  padding: 10px 10px 0px 10px;
+  margin-bottom: 16px;
+  font-family: "Nunito", sans-serif;
+}
+
+.detalle-detalle h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  color: #000000;
+  text-align: center;
+}
+

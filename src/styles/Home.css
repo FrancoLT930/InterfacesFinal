@@ -1,9 +1,12 @@
 .card {
-  background-color: #fff;
+  background-color: #ffffff;
+  position: relative;
   margin-left: 20px;
   margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 30px;
-  padding: 19px 24px 10px 24px;
+  padding: 19px 24px 0px 24px;
 }
 
 .hader-user {
@@ -82,10 +85,12 @@
   display: flex;
   justify-content: center;
   margin-top: 13px;
+  padding-bottom: 13px;
 }
 
 .order-home {
   margin-top: 35px;
+  margin-bottom: 16px;
 }
 
 .order-home-title {
@@ -102,7 +107,7 @@
   background-color: #9ddfd2;
   border-radius: 24px;
   padding: 18px 20px;
-  margin: 0 0 16px 0;
+  margin-bottom: 16px;
   cursor: pointer;
   transition: transform 0.2s ease;
   font-family: "Nunito", sans-serif;

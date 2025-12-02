@@ -8,6 +8,8 @@ import { Home } from "./pages/Home"
 import { Profile } from "./pages/Profile"
 import { MonitoringOrder } from "./pages/MonitoringOrder"
 import { ConfirmOrder } from "./pages/ConfirmOrder"
+import { DeliveryTracking } from "./pages/DeliveryTracking";
+import { DeliveryCompleted } from "./pages/DeliveryCompleted";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path="profile" element={<Profile />} />
         <Route path="monitoring-order/:id" element={<MonitoringOrder />} />
         <Route path="confirm-order" element={<ConfirmOrder />} />
+        <Route path="/delivery-tracking" element={<DeliveryTracking />} />
+        <Route path="/delivery-completed" element={<DeliveryCompleted />} />
       </Routes>
     </>
   );
