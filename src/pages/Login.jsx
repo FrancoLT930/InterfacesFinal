@@ -63,7 +63,13 @@ export const Login = () => {
           </div>
         </section>
 
-        <section className="OlvidoContra">¿Olvidaste tu contraseña?</section>
+        <section 
+          className="OlvidoContra" 
+          onClick={() => navigate("/recover-account")}
+          style={{ cursor: "pointer" }} 
+        >
+          ¿Olvidaste tu contraseña?
+        </section>
 
         <section className="accion-login">
           <button type="submit" className="btn btn-login">

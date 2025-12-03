@@ -1,0 +1,46 @@
+.recover-container.success {
+  padding: 30px 20px;
+  background: #9cb9b3;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-modal {
+  background: white;
+  padding: 40px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  margin-bottom: 50px;
+}
+
+.success-check {
+  width: 80px;
+  height: 80px;
+  background: #4c8479;
+  color: white;
+  font-size: 50px;
+  line-height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+}
+
+.success-modal h3 {
+  font-size: 24px;
+  color: #333;
+  margin: 0;
+}
+
+.btn-continue {
+  background: #4c8479;
+  color: white;
+  padding: 18px 60px;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+}
