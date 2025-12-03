@@ -6,7 +6,7 @@ export const RecordHome = ({ record = 0, total = 0, onViewHistorial }) => {
         <span>Total: {total}</span>
       </div>
       <div className="record-view-history">
-        <button onClick={onViewHistorial}>Ver Historial</button>
+        <button className="btn-historial" onClick={onViewHistorial}>Ver Historial</button>
       </div>
     </section>
   );

@@ -59,15 +59,24 @@
   align-items: center;
   color: #fff;
   font-family: "Nunito", cursive;
-  margin-top: 63px;
+  margin-top: 45px;
 }
 
 .profit-home-title {
   font-size: 24px;
+  font-family: "Sigmar", cursive;
 }
 
 .profit-home-summary {
   font-size: 64px;
+}
+
+.btn-historial{
+  border: none;
+  background-color: #ffffff;
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  font-weight: bolder;
 }
 
 .record-home {
@@ -86,6 +95,7 @@
   justify-content: center;
   margin-top: 13px;
   padding-bottom: 13px;
+  font-family: "Nunito", sans-serif;
 }
 
 .order-home {
@@ -167,4 +177,33 @@
   border-radius: 20px;
   font-size: 16px;
   font-weight: 700;
+}
+
+.historial-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+  font-size: 18px;
+  font-family: "Nunito", sans-serif;
+  background: white;
+  border-radius: 20px;
+  margin: 20px;
+}
+
+.historial-extra-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  font-size: 15px;
+  color: #666;
+}
+
+.status.entregado {
+  background: #d4edda;
+  color: #155724;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
 }

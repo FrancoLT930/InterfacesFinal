@@ -5,7 +5,7 @@ import { HeaderHome } from "../components/home/Header";
 import { ProfitHome } from "../components/home/Profit";
 import { RecordHome } from "../components/home/Record";
 import { OdersHome } from "../components/home/Oders";
-import { HistorialHome } from "../components/home/Historial";
+import { Historial } from "../components/home/Historial";
 import { OrdersAvailableHome } from "../components/home/OrdersAvailable";
 
 import "../styles/Home.css";
@@ -34,7 +34,7 @@ export const Home = () => {
   const handlerViewHistorial = () => setIsVisibleHistorial(true);
   const handlerViewOrdersAvailable = () => setIsVisibleHistorial(false);
 
-  const displayName = userData?.name || "Chasky";
+  const displayName = userData?.name || "Juan";
   const displayType = isAdmin ? "Chasky Premium" : "Chasky Básico";
   const displayProfit = isAdmin ? "152.20" : "0.00";
   const displayRecord = isAdmin ? 253 : 0;
@@ -55,7 +55,10 @@ export const Home = () => {
         />
       )}
 
-      {isVisibleHistorial ? <HistorialHome /> : <OdersHome />}
+      {/* PEDIDOS DISPONIBLES O HISTORIAL */}
+      {isVisibleHistorial ? <Historial /> : <OdersHome />}
+
+     
     </div>
   );
 };

@@ -1,0 +1,41 @@
+[
+  {
+    "id": 12345678,
+    "client": "Mario Rivera",
+    "amount": "29.90",
+    "km": 5.2,
+    "address": {
+      "origin": "Av. Arequipa 1234, Miraflores",
+      "destination": "Calle Los Pinos 567, Surco"
+    },
+    "paymentMethod": "Efectivo",
+    "date": "31/01/2025",
+    "time": "14:30"
+  },
+  {
+    "id": 87654321,
+    "client": "Sofía Mendoza",
+    "amount": "45.50",
+    "km": 8.7,
+    "address": {
+      "origin": "Jr. de la Unión 567, Cercado",
+      "destination": "Av. La Marina 890, San Miguel"
+    },
+    "paymentMethod": "Yape",
+    "date": "30/01/2025",
+    "time": "19:15"
+  },
+  {
+    "id": 11223344,
+    "client": "Carlos Vargas",
+    "amount": "18.00",
+    "km": 3.1,
+    "address": {
+      "origin": "Av. Brasil 2345, Magdalena",
+      "destination": "Calle Schell 456, Miraflores"
+    },
+    "paymentMethod": "Plin",
+    "date": "29/01/2025",
+    "time": "12:45"
+  }
+]
