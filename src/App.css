@@ -39,6 +39,7 @@ body {
     align-items: center;
     gap: 14px;
     margin: 20px 40px 0px 40px;
+    font-family: "Nunito", cursive;
 }
 
 input{
@@ -69,6 +70,41 @@ input{
     pointer-events: none;
     z-index: 2;
     }
+
+.input-wrapper {
+  position: relative;
+  
+  width: 280px;
+}
+
+.icon-login {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 26px;
+  color: #4C8479;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.inputs-form input {
+  width: 100%;
+  height: 56px;
+  padding-left: 68px;
+  border-radius: 16px;
+  border: none;
+  background: white;
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: all 0.2s;
+}
+
+.inputs-form input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 132, 121, 0.3);
+}
 
 
 /*Estilo para Olvidaste tu contraseña xd*/
@@ -107,3 +143,11 @@ input{
     justify-content: center;
 }
 
+.error-message {
+    color: #fa940f;
+    font-size: 16px;
+    text-align: center;
+    margin: 10px 0;
+    font-weight: bold;
+    font-family: "nunito", cursive;
+}

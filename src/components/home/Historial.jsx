@@ -5,18 +5,33 @@ export const Historial = () => {
   const [historial, setHistorial] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/historial.json");
-        if (!response.ok) throw new Error("No encontrado");
-        const data = await response.json();
-        setHistorial(data);
-      } catch (error) {
-        console.error("Error cargando historial:", error);
-        setHistorial([]);
-      }
-    };
-    fetchData();
+    const savedUser = localStorage.getItem("chaskysUser");
+
+    if (!savedUser) {
+      setHistorial([]);
+      return;
+    }
+
+    const user = JSON.parse(savedUser);
+
+    // Si es el admin carga historial completo del .json que cree profe
+    if (user.isAdmin || user.username === "admin") {
+      const fetchData = async () => {
+        try {
+          const response = await fetch("/historial.json");
+          if (!response.ok) throw new Error("No encontrado");
+          const data = await response.json();
+          setHistorial(data);
+        } catch (error) {
+          console.error("Error cargando historial:", error);
+          setHistorial([]);
+        }
+      };
+      fetchData();
+    } else {
+      // Si es nuvo usuario carga su historial
+      setHistorial([]);
+    }
   }, []);
 
   return (

@@ -42,7 +42,7 @@ export const Home = () => {
 
   return (
     <div>
-      <HeaderHome name={displayName} type={displayType} />
+      <HeaderHome />
       <ProfitHome profit={displayProfit} />
 
       {isVisibleHistorial ? (
@@ -57,8 +57,6 @@ export const Home = () => {
 
       {/* PEDIDOS DISPONIBLES O HISTORIAL */}
       {isVisibleHistorial ? <Historial /> : <OdersHome />}
-
-     
     </div>
   );
 };

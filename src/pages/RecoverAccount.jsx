@@ -10,12 +10,11 @@ export const RecoverAccount = () => {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    navigate("/recover-dni"); // Ahora va a la pantalla del DNI
+    navigate("/recover-dni"); 
   };
 
   return (
     <>
-      {/* FLECHA VOLVER AL LOGIN */}
       <button
         className="btn-back-arrow"
         onClick={() => navigate("/login")}
@@ -53,7 +52,6 @@ export const RecoverAccount = () => {
           </p>
         </div>
 
-        {/* BOTÓN CONTINUAR */}
         <div className="bottom-white-section">
           <button
             className="btn-continue"

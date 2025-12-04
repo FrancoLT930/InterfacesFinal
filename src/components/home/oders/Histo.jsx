@@ -17,7 +17,6 @@ export const Histo = ({ client, amount, address, km, paymentMethod, date, time, 
         </div>
       </div>
 
-      {/* INFO EXTRA DEL HISTORIAL */}
       <div className="historial-extra-info">
         <span>{date} • {time}</span>
         {status && <span className="status entregado">{status}</span>}

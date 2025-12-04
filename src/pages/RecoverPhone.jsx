@@ -47,11 +47,10 @@ export const RecoverPhone = () => {
     }
   };
 
-  // REENVIAR CÓDIGO + AUTOCOMPLETE + TOAST CORRECTO
   const handleResend = () => {
     const newCode = Math.floor(100000 + Math.random() * 900000).toString();
-    setCode(newCode.split("")); // ← autocompleta
-    setToastMessage("¡Código reenviado!"); // ← TU MENSAJE
+    setCode(newCode.split("")); 
+    setToastMessage("¡Código reenviado!");
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
   };
@@ -121,7 +120,6 @@ export const RecoverPhone = () => {
           </p>
         </div>
 
-        {/* TOAST CON TU MENSAJE */}
         {showToast && (
           <div className="call-toast2">
             <span>{toastMessage}</span>

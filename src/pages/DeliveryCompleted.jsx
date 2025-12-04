@@ -20,7 +20,7 @@ export const DeliveryCompleted = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Motivos positivos y negativos
+
   const positiveReasons = [
     "Cliente amable",
     "Entrega rápida",
@@ -35,10 +35,10 @@ export const DeliveryCompleted = () => {
     "Problemas con la dirección"
   ];
 
-  // Cambiar rating → limpia motivos anteriores
+
   const handleRating = (value) => {
     setRating(value);
-    setSelectedReasons([]); // limpia al cambiar
+    setSelectedReasons([]); // limpia al cambiar la calificación
   };
 
   const toggleReason = (reason) => {
@@ -60,7 +60,7 @@ export const DeliveryCompleted = () => {
     setTimeout(() => navigate("/home"), 2000);
   };
 
-  // Determina qué motivos mostrar
+  // Pone que motivos mostrar según la calificación sea posi o negativa
   const currentReasons = rating >= 4 ? positiveReasons : negativeReasons;
 
   if (firstView) {
@@ -94,7 +94,7 @@ export const DeliveryCompleted = () => {
         <h2>¿Cómo fue tu experiencia con?</h2>
         <p className="client-name">{order?.client}</p>
 
-        {/* ESTRELLAS */}
+        {/* estrellita donde estas */}
         <div className="rating-stars">
           {[1, 2, 3, 4, 5].map((star) => (
             <span
@@ -107,7 +107,7 @@ export const DeliveryCompleted = () => {
           ))}
         </div>
 
-        {/* MOTIVOS DINÁMICOS */}
+        {/*razones de calificacion */}
         {rating > 0 && (
           <div className="reasons-container">
             {currentReasons.map((reason) => (
@@ -122,7 +122,7 @@ export const DeliveryCompleted = () => {
           </div>
         )}
 
-        {/* COMENTARIO */}
+        {/* campo para comentario adicional*/}
         <textarea
           placeholder="Comentario adicional (opcional)"
           value={comment}

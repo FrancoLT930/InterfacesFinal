@@ -47,7 +47,7 @@ export const MapConfirmMonitoring = ({ order, hasArrived }) => {
         <Map mOrigin={order.origin} mDestination={order.destination} />
       </div>
 
-      {/* BOTÓN DESHABILITADO HASTA LLEGAR */}
+      {/* boton deshabilitado hasta llegar luego de unos segundos */}
       <div className="btns-monitoring">
         <button
           className="btn-accept"

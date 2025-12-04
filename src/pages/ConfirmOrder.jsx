@@ -12,13 +12,11 @@ export const ConfirmOrder = () => {
   const location = useLocation();
   const order = location.state?.order;
 
-  // Check inicial 2 segundos
   useEffect(() => {
     const timer = setTimeout(() => setFirstView(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
-  // Después de 5 segundos cambia el mensaje
   useEffect(() => {
     if (!firstView) {
       const timer = setTimeout(() => setHasArrived(true), 5000);
@@ -42,12 +40,10 @@ export const ConfirmOrder = () => {
     <>
       <HeaderHome />
 
-      {/* MENSAJE DINÁMICO */}
       <h3 className="msg-arrive">
         {hasArrived ? "¡Has llegado al restaurante!" : "Camino al restaurante"}
       </h3>
 
-      {/* PASA EL ESTADO AL HIJO */}
       <MapConfirmMonitoring order={order} hasArrived={hasArrived} />
     </>
   );

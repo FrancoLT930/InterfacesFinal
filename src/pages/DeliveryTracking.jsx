@@ -63,7 +63,7 @@ export const DeliveryTracking = () => {
           <Map mOrigin={order.origin} mDestination={order.destination} />
         </div>
 
-        {/* TOAST LLAMADA */}
+        {/* TOAST LLAMADA PARA DARLE UN TOQUE COMO CELULAR */}
         {showToast && (
           <div className="call-toast">
             <span> {order.client}...</span>

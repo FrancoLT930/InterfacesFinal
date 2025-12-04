@@ -96,7 +96,6 @@ export const MapMonitoring = ({ id }) => {
         </button>
       </div>
 
-      {/* LOADING SOBRE TODO (overlay) */}
       {isLoagin && (
         <div className="loagin-accept">
           <img src="/cargando.svg" alt="Cargando" />

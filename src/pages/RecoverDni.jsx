@@ -19,7 +19,6 @@ export const RecoverDni = () => {
 
   return (
     <>
-      {/* FLECHA VOLVER */}
       <button className="btn-back-arrow" onClick={() => navigate(-1)}>
         <IoArrowBack size={28} />
       </button>
@@ -50,7 +49,6 @@ export const RecoverDni = () => {
                   </p>
                 </div>
 
-        {/* BOTÓN CON FONDO BLANCO ABAJO */}
         <div className="bottom-white-section">
           <button className="btn-continue" onClick={handleContinue}>
             Continuar

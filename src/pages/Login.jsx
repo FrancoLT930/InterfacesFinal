@@ -1,21 +1,23 @@
 import { useState } from "react";
-import { LogoChaskys } from "../components/LogoChaskys";   // ajustá la ruta si es necesario
+import { LogoChaskys } from "../components/LogoChaskys";
 import { Link, useNavigate } from "react-router-dom";
 
-// ICONOS DE REACT-ICONS (mismos que Register)
+// ICONOS
 import { FiUser, FiLock } from "react-icons/fi";
 
 export const Login = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError("");
 
+    // 1. si es admin con credenciales fijas
     if (user === "admin" && password === "123456") {
-      // FORZAMOS DATOS DE ADMIN (para que no haya cruce)
       const adminData = {
         name: "Juan",
         username: "admin",
@@ -24,14 +26,26 @@ export const Login = () => {
         record: 253,
         totalToday: 32,
         isAdmin: true,
-        phone: "987654321",           // <--- TELÉFONO DEL ADMIN
-        email: "juan@chaskys.com"     // <--- CORREO DEL ADMIN
+        phone: "987654321",
+        email: "juan@chaskys.com",
+        password: "123456"
       };
       localStorage.setItem("chaskysUser", JSON.stringify(adminData));
       navigate("/home");
-    } else {
-      alert("Credenciales inválidas");
+      return;
     }
+
+    // 2. cuando sea un usuario registrado
+    const savedUser = localStorage.getItem("chaskysUser");
+    if (savedUser) {
+      const userData = JSON.parse(savedUser);
+      if (userData.username === user && userData.password === password) {
+        navigate("/home");
+        return;
+      }
+    }
+
+    setError("Usuario o contraseña incorrectos");
   };
 
   return (
@@ -41,7 +55,7 @@ export const Login = () => {
       <form onSubmit={handleSubmit} className="login-form">
         <section className="inputs-form">
           <div className="input-wrapper">
-            <FiUser className="icon" />
+            <FiUser className="icon-login" />
             <input
               type="text"
               placeholder="Usuario"
@@ -52,7 +66,7 @@ export const Login = () => {
           </div>
 
           <div className="input-wrapper">
-            <FiLock className="icon" />
+            <FiLock className="icon-login" />
             <input
               type="password"
               placeholder="Contraseña"
@@ -62,6 +76,9 @@ export const Login = () => {
             />
           </div>
         </section>
+
+        {/* MENSAJE DE ERROR */}
+        {error && <p className="error-message">{error}</p>}
 
         <section 
           className="OlvidoContra" 

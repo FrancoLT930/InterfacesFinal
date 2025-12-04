@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { HaderProfile } from "../components/profile/Hader";
+import { IoArrowBack } from "react-icons/io5"; // ← FLECHA
 
 import "../styles/Profile.css";
 
@@ -45,12 +46,19 @@ export const Profile = () => {
   const avatarSrc = userData.selfieBase64 
     ? userData.selfieBase64 
     : (userData.isAdmin || userData.username === "admin" 
-        ? "https://i.imgur.com/oAHT0Um.jpeg"   // foto admin (cámbiala cuando quieras)
-        : "https://via.placeholder.com/120/FF6B6B/FFFFFF?text=👤");
+        ? "https://i.imgur.com/oAHT0Um.jpeg"  
+        : "https://via.placeholder.com/120/FF6B6B/FFFFFF?text=User");
 
   return (
     <div className="profile-page">
       <HaderProfile type={displayType} />
+
+      <button 
+        className="btn-back-arrow-profile"
+        onClick={() => navigate(-1)}
+      >
+        <IoArrowBack size={28} />
+      </button>
 
       <div className="profile-body">
         <div className="profile-avatar-container">

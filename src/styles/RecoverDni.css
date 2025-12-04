@@ -69,7 +69,6 @@
   color: #FF7700;
 }
 
-/* FLECHA VOLVER */
 .btn-back-arrow {
   position: absolute;
   top: 20px;
@@ -90,7 +89,6 @@
   z-index: 1000;
 }
 
-/* FONDO BLANCO + BOTÓN ABAJO */
 .bottom-white-section {
   position: fixed;
   bottom: 0;

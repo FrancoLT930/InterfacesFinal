@@ -5,6 +5,7 @@ import "../styles/Register.css";
 
 // Iconos
 import { FiUser, FiCreditCard, FiPhone, FiMail, FiLock } from "react-icons/fi";
+import { IoArrowBack } from "react-icons/io5"; // ← FLECHA DE VOLVER
 
 export const Register = () => {
   const [step, setStep] = useState(1);
@@ -33,13 +34,21 @@ export const Register = () => {
     if (step < 3) {
       nextStep();
     } else {
-      // GUARDAR TODO EN LOCALSTORAGE
+      if (credentials.password !== credentials.confirmPassword) {
+        alert("Las contraseñas no coinciden");
+        return;
+      }
+
       const userData = {
-        ...contact,
+        name: contact.name,
+        dni: contact.dni,
+        phone: contact.phone,
+        email: contact.email,
         transport,
         selfieBase64,
         dniFrontBase64,
-        ...credentials,
+        username: credentials.username,
+        password: credentials.password,
         registeredAt: new Date().toISOString(),
       };
 
@@ -51,7 +60,7 @@ export const Register = () => {
   const titleText =
     step === 1 ? "Registro - Paso 1 de 3: Contacto" :
     step === 2 ? "Registro - Paso 2 de 3: Validación" :
-                 "Registro - Paso 3 de 3: Credenciales";
+                "Registro - Paso 3 de 3: Credenciales";
 
   return (
     <div className="register-wrapper">
@@ -59,25 +68,35 @@ export const Register = () => {
 
       <form onSubmit={handleSubmit} className="register-form">
 
+        {(step === 2 || step === 3) && (
+          <button
+            type="button" 
+            className="btn-back-arrow-register"
+            onClick={() => setStep(step - 1)}
+          >
+    <IoArrowBack size={28} />
+  </button>
+)}
+
         {/* =================== PASO 1 =================== */}
         {step === 1 && (
           <div className="form-body">
-            <div className="input-wrapper">
+            <div className="input-wrapper2">
               <FiUser className="icon" />
               <input type="text" placeholder="Nombre Completo" required
                 value={contact.name} onChange={(e) => setContact({...contact, name: e.target.value})} />
             </div>
-            <div className="input-wrapper">
+            <div className="input-wrapper2">
               <FiCreditCard className="icon" />
               <input type="text" placeholder="DNI o CE" required
                 value={contact.dni} onChange={(e) => setContact({...contact, dni: e.target.value})} />
             </div>
-            <div className="input-wrapper">
+            <div className="input-wrapper2">
               <FiPhone className="icon" />
               <input type="tel" placeholder="Teléfono" required
                 value={contact.phone} onChange={(e) => setContact({...contact, phone: e.target.value})} />
             </div>
-            <div className="input-wrapper">
+            <div className="input-wrapper2">
               <FiMail className="icon" />
               <input type="email" placeholder="Correo" required
                 value={contact.email} onChange={(e) => setContact({...contact, email: e.target.value})} />
@@ -102,7 +121,9 @@ export const Register = () => {
             </div>
 
             <label className="validation-row">
-              <div className={`status-dot ${selfieBase64 ? 'uploaded' : ''}`}></div>
+              <div className={`validation-status-icon ${selfieBase64 ? 'uploaded' : 'not-uploaded'}`}>
+                {selfieBase64 ? "✓" : "✕"}
+              </div>
               <span>Toma selfie</span>
               <span className="arrow-right">›</span>
               <input 
@@ -117,7 +138,9 @@ export const Register = () => {
             </label>
 
             <label className="validation-row">
-              <div className={`status-dot ${dniFrontBase64 ? 'uploaded' : ''}`}></div>
+              <div className={`validation-status-icon ${dniFrontBase64 ? 'uploaded' : 'not-uploaded'}`}>
+                {dniFrontBase64 ? "✓" : "✕"}
+              </div>
               <span>Subir foto DNI</span>
               <span className="arrow-right">›</span>
               <input 
@@ -136,17 +159,17 @@ export const Register = () => {
         {/* =================== PASO 3 =================== */}
         {step === 3 && (
           <div className="form-body">
-            <div className="input-wrapper">
+            <div className="input-wrapper2">
               <FiUser className="icon" />
               <input type="text" placeholder="Usuario" required
                 value={credentials.username} onChange={(e) => setCredentials({...credentials, username: e.target.value})} />
             </div>
-            <div className="input-wrapper">
+            <div className="input-wrapper2">
               <FiLock className="icon" />
               <input type="password" placeholder="Contraseña" required
                 value={credentials.password} onChange={(e) => setCredentials({...credentials, password: e.target.value})} />
             </div>
-            <div className="input-wrapper">
+            <div className="input-wrapper2">
               <FiLock className="icon" />
               <input type="password" placeholder="Repetir contraseña" required
                 value={credentials.confirmPassword} onChange={(e) => setCredentials({...credentials, confirmPassword: e.target.value})} />
@@ -165,15 +188,15 @@ export const Register = () => {
         </div>
       </form>
 
-      {/* =================== MODAL DE ÉXITO =================== */}
       {showSuccessModal && (
         <div className="success-modal-overlay">
           <div className="success-modal">
             <div className="success-check">✓</div>
             <h2>¡Cuenta creada con éxito!</h2>
+            <p>Inicia sesión con tus nuevas credenciales</p>
             <button 
               className="btn btn-continue-register"
-              onClick={() => navigate("/home")}
+              onClick={() => navigate("/login")}
             >
               Continuar
             </button>
