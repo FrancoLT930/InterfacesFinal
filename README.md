@@ -16,5 +16,5 @@ npm run dev
 
 | Feature | Fecha creacion | Creado poy |
 |---------|----------------|------------|
-| Login | 16/10/2025 | Jhefferson|
-| Registro | 17/10/2025 | Jhefferson|# InterfacesFinal
+| Login | 01/12/2025 | Franco LT|
+| Registro | 02/12/2025 | FrancoLT|# InterfacesFinal
