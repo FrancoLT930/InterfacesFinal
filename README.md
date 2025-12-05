@@ -6,8 +6,8 @@ Utiliza la versionde [Node.js](https://nodejs.org/) mayor a la v22
 Estos son los comandos a utilizar
 
 ```sh
-git clone https://github.com/jalbornoz14/react-app-delivery.git
-cd react-app-delivery
+git clone [https://github.com/FrancoLT930/InterfacesFinal]
+cd InterfacesFinal
 npm install
 npm run dev
 ```
@@ -16,5 +16,5 @@ npm run dev
 
 | Feature | Fecha creacion | Creado poy |
 |---------|----------------|------------|
-| Login | 16/10/2025 | Jhefferson|
-| Registro | 17/10/2025 | Jhefferson|# InterfacesFinal
+| Login | 01/12/2025 | Franco LT|
+| Registro | 02/12/2025 | FrancoLT|# InterfacesFinal
