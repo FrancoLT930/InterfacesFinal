@@ -14,7 +14,7 @@ export const Historial = () => {
 
     const user = JSON.parse(savedUser);
 
-    // Si es el admin carga historial completo del .json que cree profe
+    // SI ES ADMIN → CARGA EL HISTORIAL COMPLETO DEL JSON
     if (user.isAdmin || user.username === "admin") {
       const fetchData = async () => {
         try {
@@ -23,14 +23,16 @@ export const Historial = () => {
           const data = await response.json();
           setHistorial(data);
         } catch (error) {
-          console.error("Error cargando historial:", error);
+          console.error("Error cargando historial del admin:", error);
           setHistorial([]);
         }
       };
       fetchData();
     } else {
-      // Si es nuvo usuario carga su historial
-      setHistorial([]);
+      // SI ES REPARTIDOR NORMAL → CARGA SU HISTORIAL PERSONAL
+      const allHistory = JSON.parse(localStorage.getItem("userHistory") || "{}");
+      const personalHistory = allHistory[user.username] || [];
+      setHistorial(personalHistory);
     }
   }, []);
 
@@ -54,8 +56,8 @@ export const Historial = () => {
             address={pedido.address}
             km={pedido.km}
             paymentMethod={pedido.paymentMethod}
-            date={pedido.date}
-            time={pedido.time}
+            date={pedido.date || new Date(pedido.deliveredAt).toLocaleDateString()}
+            time={pedido.time || new Date(pedido.deliveredAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
             status={pedido.status || "Entregado"}
           />
         ))

@@ -24,8 +24,7 @@ export const Home = () => {
       setUserData(parsed);
       setIsAdmin(parsed.username === "admin" || !parsed.name);
     } else {
-
-      setUserData({ name: "Juan", profit: "0.00" });
+      setUserData({ name: "Juan", profit: "0.00", record: 0, totalToday: 0 });
       setIsAdmin(true);
     }
   }, []);
@@ -33,15 +32,13 @@ export const Home = () => {
   const handlerViewHistorial = () => setIsVisibleHistorial(true);
   const handlerViewOrdersAvailable = () => setIsVisibleHistorial(false);
 
-
   const displayName = userData?.name || "Juan";
   const displayType = isAdmin ? "Chasky Premium" : "Chasky Básico";
 
- 
+  // VALORES DINÁMICOS
   const displayProfit = userData?.profit || "0.00";
-
-  const displayRecord = isAdmin ? 253 : 0;
-  const displayTotalToday = isAdmin ? 32 : 0;
+  const displayRecord = userData?.record || 0;
+  const displayTotalToday = userData?.totalToday || 0;
 
   return (
     <div>
@@ -57,6 +54,7 @@ export const Home = () => {
           onViewHistorial={handlerViewHistorial}
         />
       )}
+
       {isVisibleHistorial ? <Historial /> : <OdersHome />}
 
       {isAdmin && !isVisibleHistorial && (

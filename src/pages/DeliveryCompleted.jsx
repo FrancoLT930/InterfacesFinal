@@ -55,20 +55,64 @@ export const DeliveryCompleted = () => {
       comentario: comment
     });
 
-  
-  const currentUser = JSON.parse(localStorage.getItem("chaskysUser"));
-  const montoEntregado = parseFloat(order.amount);
-  const gananciaActual = parseFloat(currentUser.profit || "0.00");
-  const nuevaGanancia = (gananciaActual + montoEntregado).toFixed(2);
-  
-  const updatedUser = {
-    ...currentUser,
-    profit: nuevaGanancia
-  };
+    const currentUser = JSON.parse(localStorage.getItem("chaskysUser") || "{}");
 
-  localStorage.setItem("chaskysUser", JSON.stringify(updatedUser));
+    // === ACTUALIZAMOS GANANCIA ===
+    const monto = parseFloat(order.amount);
+    const gananciaActual = parseFloat(currentUser.profit || "0.00");
+    const nuevaGanancia = (gananciaActual + monto).toFixed(2);
 
+    // === ACTUALIZAMOS RECORD (total histórico) ===
+    const recordActual = parseInt(currentUser.record || "0");
+    const nuevoRecord = recordActual + 1;
 
+    // === ACTUALIZAMOS TOTAL HOY (se reinicia cada día) ===
+    const hoy = new Date().toLocaleDateString();
+    let totalHoy = parseInt(currentUser.totalToday || "0");
+
+    if (currentUser.lastDeliveryDate !== hoy) {
+      totalHoy = 1;
+    } else {
+      totalHoy += 1;
+    }
+
+    // === GUARDAMOS EN HISTORIAL PERSONAL ===
+    const userHistory = JSON.parse(localStorage.getItem("userHistory") || "{}");
+
+    if (!userHistory[currentUser.username]) {
+      userHistory[currentUser.username] = [];
+    }
+
+    const deliveredOrder = {
+      id: order.id,
+      client: order.client,
+      amount: order.amount,
+      km: order.km,
+      address: order.address,
+      paymentMethod: order.paymentMethod,
+      date: hoy,
+      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      status: "Entregado",
+      rating,
+      reasons: selectedReasons,
+      comment
+    };
+
+    userHistory[currentUser.username].push(deliveredOrder);
+
+    // === GUARDAMOS TODO ===
+    const updatedUser = {
+      ...currentUser,
+      profit: nuevaGanancia,
+      record: nuevoRecord,
+      totalToday: totalHoy,
+      lastDeliveryDate: hoy
+    };
+
+    localStorage.setItem("chaskysUser", JSON.stringify(updatedUser));
+    localStorage.setItem("userHistory", JSON.stringify(userHistory));
+
+    // === MARCAMOS COMO COMPLETADO ===
     const completedOrders = JSON.parse(localStorage.getItem("completedOrders") || "[]");
     if (!completedOrders.includes(order.id)) {
       completedOrders.push(order.id);
