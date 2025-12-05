@@ -21,7 +21,7 @@ useEffect(() => {
   };
 
   fetchData();
-  // Escuchamos cambios en localStorage (aunque sea en la misma pestaña)
+
   window.addEventListener("storage", fetchData);
   return () => window.removeEventListener("storage", fetchData);
 }, []);
