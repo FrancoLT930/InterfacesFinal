@@ -17,16 +17,16 @@ export const Home = () => {
   const [userData, setUserData] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
 
+  // CARGAMOS EL USUARIO Y SU GANANCIA
   useEffect(() => {
     const savedUser = localStorage.getItem("chaskysUser");
     if (savedUser) {
       const parsed = JSON.parse(savedUser);
       setUserData(parsed);
-      if (parsed.username === "admin" || !parsed.name) {
-        setIsAdmin(true);
-      }
+      setIsAdmin(parsed.username === "admin" || !parsed.name);
     } else {
-      setUserData({ name: "Juan" });
+      // Usuario por defecto (solo para pruebas)
+      setUserData({ name: "Juan", profit: "0.00" });
       setIsAdmin(true);
     }
   }, []);
@@ -34,15 +34,22 @@ export const Home = () => {
   const handlerViewHistorial = () => setIsVisibleHistorial(true);
   const handlerViewOrdersAvailable = () => setIsVisibleHistorial(false);
 
+  // NOMBRE Y TIPO
   const displayName = userData?.name || "Juan";
   const displayType = isAdmin ? "Chasky Premium" : "Chasky Básico";
-  const displayProfit = isAdmin ? "152.20" : "0.00";
+
+  // GANANCIA DINÁMICA (se actualiza con cada entrega)
+  const displayProfit = userData?.profit || "0.00";
+
+  // RECORD Y TOTAL HOY (solo admin los ve reales)
   const displayRecord = isAdmin ? 253 : 0;
   const displayTotalToday = isAdmin ? 32 : 0;
 
   return (
     <div>
-      <HeaderHome />
+      <HeaderHome name={displayName} type={displayType} />
+      
+      {/* GANANCIA SEMANAL DINÁMICA */}
       <ProfitHome profit={displayProfit} />
 
       {isVisibleHistorial ? (
@@ -55,8 +62,20 @@ export const Home = () => {
         />
       )}
 
-      {/* PEDIDOS DISPONIBLES O HISTORIAL */}
+      {/* PEDIDOS O HISTORIAL */}
       {isVisibleHistorial ? <Historial /> : <OdersHome />}
+
+      {/* BOTÓN HISTORIAL (solo admin) */}
+      {isAdmin && !isVisibleHistorial && (
+        <div className="historial-home-button">
+          <button
+            className="btn-ver-historial"
+            onClick={handlerViewHistorial}
+          >
+            Ver Historial
+          </button>
+        </div>
+      )}
     </div>
   );
 };

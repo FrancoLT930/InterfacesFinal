@@ -55,6 +55,20 @@ export const DeliveryCompleted = () => {
       comentario: comment
     });
 
+  
+  const currentUser = JSON.parse(localStorage.getItem("chaskysUser"));
+  const montoEntregado = parseFloat(order.amount);
+  const gananciaActual = parseFloat(currentUser.profit || "0.00");
+  const nuevaGanancia = (gananciaActual + montoEntregado).toFixed(2);
+  
+  const updatedUser = {
+    ...currentUser,
+    profit: nuevaGanancia
+  };
+
+  localStorage.setItem("chaskysUser", JSON.stringify(updatedUser));
+
+
     const completedOrders = JSON.parse(localStorage.getItem("completedOrders") || "[]");
     if (!completedOrders.includes(order.id)) {
       completedOrders.push(order.id);
