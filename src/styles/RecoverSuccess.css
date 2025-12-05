@@ -9,13 +9,13 @@
   justify-content: center;
 }
 
-.success-modal {
+.success-modal2 {
   background: white;
   padding: 40px;
   border-radius: 30px;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  margin-bottom: 50px;
+  margin-bottom: 300px;
 }
 
 .success-check {
@@ -29,7 +29,7 @@
   margin: 0 auto 20px;
 }
 
-.success-modal h3 {
+.success-modal2 h3 {
   font-size: 24px;
   color: #333;
   margin: 0;
