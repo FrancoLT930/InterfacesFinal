@@ -5,7 +5,7 @@ import "../styles/Register.css";
 
 // Iconos
 import { FiUser, FiCreditCard, FiPhone, FiMail, FiLock } from "react-icons/fi";
-import { IoArrowBack } from "react-icons/io5"; // ← FLECHA DE VOLVER
+import { IoArrowBack } from "react-icons/io5";
 
 export const Register = () => {
   const [step, setStep] = useState(1);
@@ -39,7 +39,7 @@ export const Register = () => {
         return;
       }
 
-      const userData = {
+      const newUser = {
         name: contact.name,
         dni: contact.dni,
         phone: contact.phone,
@@ -52,7 +52,14 @@ export const Register = () => {
         registeredAt: new Date().toISOString(),
       };
 
-      localStorage.setItem("chaskysUser", JSON.stringify(userData));
+      // GUARDAMOS EN EL ARRAY DE USUARIOS REGISTRADOS
+      const allUsers = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+      allUsers.push(newUser);
+      localStorage.setItem("registeredUsers", JSON.stringify(allUsers));
+
+      // Y TAMBIÉN COMO USUARIO ACTUAL (para entrar directo)
+      localStorage.setItem("chaskysUser", JSON.stringify(newUser));
+
       setShowSuccessModal(true);
     }
   };
@@ -70,13 +77,13 @@ export const Register = () => {
 
         {(step === 2 || step === 3) && (
           <button
-            type="button" 
+            type="button"
             className="btn-back-arrow-register"
             onClick={() => setStep(step - 1)}
           >
-    <IoArrowBack size={28} />
-  </button>
-)}
+            <IoArrowBack size={28} />
+          </button>
+        )}
 
         {/* =================== PASO 1 =================== */}
         {step === 1 && (

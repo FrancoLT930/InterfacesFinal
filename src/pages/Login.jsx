@@ -16,7 +16,7 @@ export const Login = () => {
     e.preventDefault();
     setError("");
 
-    // 1. si es admin con credenciales fijas
+    // 1. ADMIN → credenciales fijas
     if (user === "admin" && password === "123456") {
       const adminData = {
         name: "Juan",
@@ -35,16 +35,21 @@ export const Login = () => {
       return;
     }
 
-    // 2. cuando sea un usuario registrado
-    const savedUser = localStorage.getItem("chaskysUser");
-    if (savedUser) {
-      const userData = JSON.parse(savedUser);
-      if (userData.username === user && userData.password === password) {
-        navigate("/home");
-        return;
-      }
+    // 2. USUARIOS REGISTRADOS → buscamos en el array guardado
+    const allRegisteredUsers = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+
+    const foundUser = allRegisteredUsers.find(
+      (u) => u.username === user && u.password === password
+    );
+
+    if (foundUser) {
+      // Lo guardamos como usuario activo y entramos
+      localStorage.setItem("chaskysUser", JSON.stringify(foundUser));
+      navigate("/home");
+      return;
     }
 
+    // Si no encontró nada
     setError("Usuario o contraseña incorrectos");
   };
 
@@ -77,7 +82,6 @@ export const Login = () => {
           </div>
         </section>
 
-        {/* MENSAJE DE ERROR */}
         {error && <p className="error-message">{error}</p>}
 
         <section 
