@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-mapboxgl.accessToken = "pk.eyJ1IjoiZGFya2xvcmQ5MzAiLCJhIjoiY21pbmxoM3poMmZrOTNlb3Mxb2cxeDdycSJ9.4sc4kUYnwRIBJoyYmNCBPw";
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
 export const Map = ({mOrigin, mDestination}) => {
     const mapContainer = useRef(null);
