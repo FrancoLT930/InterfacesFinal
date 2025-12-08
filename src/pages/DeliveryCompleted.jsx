@@ -113,7 +113,6 @@ export const DeliveryCompleted = () => {
     localStorage.setItem("chaskysUser", JSON.stringify(updatedUser));
     localStorage.setItem("userHistory", JSON.stringify(userHistory));
 
-    // === AQUÍ ESTABA EL BUG: ACTUALIZAMOS registeredUsers ===
     const allRegistered = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
     const updatedRegistered = allRegistered.map(u => 
       u.username === updatedUser.username ? updatedUser : u

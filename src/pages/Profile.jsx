@@ -29,10 +29,9 @@ export const Profile = () => {
       email: editedData.email || userData.email,
     };
 
-    // Update chaskysUser (as before)
+
     localStorage.setItem("chaskysUser", JSON.stringify(updatedUser));
 
-    // Update registeredUsers array as well
     const allUsers = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
     const updatedAllUsers = allUsers.map((u) =>
       u.username === updatedUser.username ? updatedUser : u
