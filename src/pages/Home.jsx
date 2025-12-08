@@ -18,15 +18,26 @@ export const Home = () => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem("chaskysUser");
-    if (savedUser) {
-      const parsed = JSON.parse(savedUser);
-      setUserData(parsed);
-      setIsAdmin(parsed.username === "admin" || !parsed.name);
-    } else {
-      setUserData({ name: "Juan", profit: "0.00", record: 0, totalToday: 0 });
-      setIsAdmin(true);
-    }
+    const loadUser = () => {
+      const savedUser = localStorage.getItem("chaskysUser");
+      if (savedUser) {
+        const parsed = JSON.parse(savedUser);
+        setUserData(parsed);
+        setIsAdmin(parsed.username === "admin" || !parsed.name);
+      } else {
+        setUserData({ name: "Juan", profit: "0.00", record: 0, totalToday: 0 });
+        setIsAdmin(true);
+      }
+    };
+
+    loadUser();
+    window.addEventListener("storage", loadUser);
+    const interval = setInterval(loadUser, 1000);
+
+    return () => {
+      window.removeEventListener("storage", loadUser);
+      clearInterval(interval);
+    };
   }, []);
 
   const handlerViewHistorial = () => setIsVisibleHistorial(true);
@@ -35,7 +46,6 @@ export const Home = () => {
   const displayName = userData?.name || "Juan";
   const displayType = isAdmin ? "Chasky Premium" : "Chasky Básico";
 
-  // VALORES DINÁMICOS
   const displayProfit = userData?.profit || "0.00";
   const displayRecord = userData?.record || 0;
   const displayTotalToday = userData?.totalToday || 0;

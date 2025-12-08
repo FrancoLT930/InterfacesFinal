@@ -50,6 +50,9 @@ export const Register = () => {
         username: credentials.username,
         password: credentials.password,
         registeredAt: new Date().toISOString(),
+        profit: "0.00",
+        record: 0,
+        totalToday: 0
       };
 
       // GUARDAMOS EN EL ARRAY DE USUARIOS REGISTRADOS
@@ -57,7 +60,7 @@ export const Register = () => {
       allUsers.push(newUser);
       localStorage.setItem("registeredUsers", JSON.stringify(allUsers));
 
-      // Y TAMBIÉN COMO USUARIO ACTUAL (para entrar directo)
+      // Y COMO USUARIO ACTIVO
       localStorage.setItem("chaskysUser", JSON.stringify(newUser));
 
       setShowSuccessModal(true);

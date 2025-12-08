@@ -100,7 +100,7 @@ export const DeliveryCompleted = () => {
 
     userHistory[currentUser.username].push(deliveredOrder);
 
-    // === GUARDAMOS TODO ===
+    // === OBJETO ACTUALIZADO DEL USUARIO ===
     const updatedUser = {
       ...currentUser,
       profit: nuevaGanancia,
@@ -109,8 +109,16 @@ export const DeliveryCompleted = () => {
       lastDeliveryDate: hoy
     };
 
+    // === GUARDAMOS EN chaskysUser (usuario activo) ===
     localStorage.setItem("chaskysUser", JSON.stringify(updatedUser));
     localStorage.setItem("userHistory", JSON.stringify(userHistory));
+
+    // === AQUÍ ESTABA EL BUG: ACTUALIZAMOS registeredUsers ===
+    const allRegistered = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+    const updatedRegistered = allRegistered.map(u => 
+      u.username === updatedUser.username ? updatedUser : u
+    );
+    localStorage.setItem("registeredUsers", JSON.stringify(updatedRegistered));
 
     // === MARCAMOS COMO COMPLETADO ===
     const completedOrders = JSON.parse(localStorage.getItem("completedOrders") || "[]");

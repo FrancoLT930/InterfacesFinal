@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { HaderProfile } from "../components/profile/Hader";
-import { IoArrowBack } from "react-icons/io5"; // ← FLECHA
 
 import "../styles/Profile.css";
 
@@ -29,7 +28,17 @@ export const Profile = () => {
       phone: editedData.phone || userData.phone,
       email: editedData.email || userData.email,
     };
+
+    // Update chaskysUser (as before)
     localStorage.setItem("chaskysUser", JSON.stringify(updatedUser));
+
+    // Update registeredUsers array as well
+    const allUsers = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+    const updatedAllUsers = allUsers.map((u) =>
+      u.username === updatedUser.username ? updatedUser : u
+    );
+    localStorage.setItem("registeredUsers", JSON.stringify(updatedAllUsers));
+
     setUserData(updatedUser);
     setIsEditing(false);
   };
@@ -47,18 +56,11 @@ export const Profile = () => {
     ? userData.selfieBase64 
     : (userData.isAdmin || userData.username === "admin" 
         ? "https://i.imgur.com/oAHT0Um.jpeg"  
-        : "https://via.placeholder.com/120/FF6B6B/FFFFFF?text=User");
+        : "https://via.placeholder.com/120/FF6B6B/FFFFFF?text=👤");
 
   return (
     <div className="profile-page">
       <HaderProfile type={displayType} />
-
-      <button 
-        className="btn-back-arrow-profile"
-        onClick={() => navigate(-1)}
-      >
-        <IoArrowBack size={28} />
-      </button>
 
       <div className="profile-body">
         <div className="profile-avatar-container">
