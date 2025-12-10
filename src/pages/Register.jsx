@@ -134,7 +134,7 @@ export const Register = () => {
               <div className={`validation-status-icon ${selfieBase64 ? 'uploaded' : 'not-uploaded'}`}>
                 {selfieBase64 ? "✓" : "✕"}
               </div>
-              <span>Toma selfie</span>
+              <span>Subir selfie</span>
               <span className="arrow-right">›</span>
               <input 
                 type="file" 

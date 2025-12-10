@@ -145,12 +145,31 @@
 }
 
 .btn-edit {
-  background: #3180F5;   /* azul como en tu imagen */
+  background: #3180F5;
   color: white;
   padding: 16px;
   border-radius: 16px;
   font-size: 20px;
   font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-edit.editing {
+  background: #3180F5;
+}
+
+.btn-edit.editing:hover {
+  background: #2968c7;
+}
+
+.btn-edit.saving {
+  background: #5ED15E;
+}
+
+.btn-edit.saving:hover {
+  background: #219653;
 }
 
 .btn-logout {

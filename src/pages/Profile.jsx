@@ -118,9 +118,13 @@ export const Profile = () => {
         </div>
 
         <div className="profile-actions">
-          <button className="btn-edit" onClick={isEditing ? handleSave : () => setIsEditing(true)}>
+          <button className={`btn-edit ${isEditing ? "saving" : "editing"}`}
+            onClick={isEditing ? handleSave : () => setIsEditing(true)}
+          >
             {isEditing ? "Guardar" : "Editar"}
           </button>
+
+
           <button className="btn-logout" onClick={handleLogout}>
             Cerrar Sesión
           </button>
