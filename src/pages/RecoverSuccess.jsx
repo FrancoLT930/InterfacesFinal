@@ -26,7 +26,6 @@ export const RecoverSuccess = () => {
 
   return (
     <>
-      <HeaderHome showBack={true} />
 
       <section className="recover-container success">
         <div className="success-modal2">
