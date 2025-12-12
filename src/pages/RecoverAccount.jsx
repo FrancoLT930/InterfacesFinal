@@ -36,7 +36,6 @@ export const RecoverAccount = () => {
             <strong>Información relacionada a tu cuenta</strong>
             <ul className="info-list">
               <li>Número de DNI</li>
-              <li>Correo Electrónico</li>
               <li>Celular</li>
             </ul>
           </div>
