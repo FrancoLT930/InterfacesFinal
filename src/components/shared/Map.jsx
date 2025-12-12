@@ -20,9 +20,9 @@ export const Map = ({mOrigin, mDestination}) => {
 
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
-            style: "mapbox://styles/mapbox/standard",
+            style: "mapbox://styles/mapbox/streets-v12",
             center: origin,
-            zoom: 13,
+            zoom: 14
         });
 
         map.current.on('load', () => {
